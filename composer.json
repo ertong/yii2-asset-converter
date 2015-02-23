@@ -14,10 +14,10 @@
     ],
     "require" : {
         "php": ">=5.4.0",
-        "yiisoft/yii2": "dev-master",
-        "yiisoft/yii2-composer": "dev-master",
+        "yiisoft/yii2": "*",
+        "yiisoft/yii2-composer": "*",
         "leafo/lessphp": "0.4.*@dev",
-        "richthegeek/phpsass": "dev-master"
+        "richthegeek/phpsass": "*"
     },
     "autoload": {
         "psr-0": { "nizsheanez\\assetConverter\\": "" }
