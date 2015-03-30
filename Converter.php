@@ -77,9 +77,10 @@ class Converter extends \yii\web\AssetConverter
         $parserConfig = ArrayHelper::merge($this->defaultParsersOptions[$ext], $this->parsers[$ext]);
         if ($this->destinationDir) {
             $this->destinationDir .= '/';
-	}
-$resultFile = substr($asset, 0, $pos + 1)."compiled.". $parserConfig['output'];
-//$resultFile = $this->destinationDir . substr($asset, 0, $pos + 1) . $parserConfig['output'];
+        }
+        $resultFile = substr($asset, 0, $pos + 1) . "compiled." . $parserConfig['output'];
+        //$resultFile = $this->destinationDir . substr($asset, 0, $pos + 1) . $parserConfig['output'];
+        
         $from = $basePath . '/' . $asset;
         $to = $basePath . '/' . $resultFile;
 
