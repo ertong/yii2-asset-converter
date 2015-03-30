@@ -75,11 +75,13 @@ class Converter extends \yii\web\AssetConverter
         }
 
         $parserConfig = ArrayHelper::merge($this->defaultParsersOptions[$ext], $this->parsers[$ext]);
-        $resultFile = substr($asset, 0, $pos + 1)."compiled.". $parserConfig['output'];
-//        $resultFile = $this->destinationDir . '/' . substr($asset, 0, $pos + 1) . $parserConfig['output'];
-
+        if ($this->destinationDir) {
+            $this->destinationDir .= '/';
+	}
+$resultFile = substr($asset, 0, $pos + 1)."compiled.". $parserConfig['output'];
+//$resultFile = $this->destinationDir . substr($asset, 0, $pos + 1) . $parserConfig['output'];
         $from = $basePath . '/' . $asset;
-        $to = $basePath .'/'. $resultFile;
+        $to = $basePath . '/' . $resultFile;
 
         if (!$this->needRecompile($from, $to)) {
             return $resultFile;
@@ -113,7 +115,7 @@ class Converter extends \yii\web\AssetConverter
 
     public function checkDestinationDir($basePath, $file)
     {
-        $distDir = dirname($basePath ."/". $file);
+        $distDir = dirname($basePath . '/' . $file);
         if (!is_dir($distDir)) {
             mkdir($distDir, $this->destinationDirPerms, true);
         }
