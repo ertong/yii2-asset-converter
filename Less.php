@@ -1,6 +1,7 @@
 <?php
 namespace nizsheanez\assetConverter;
 
+use Exception;
 use Yii;
 use yii\caching\FileCache;
 
@@ -19,9 +20,9 @@ class Less extends Parser
                 /* @var FileCache $cacheMgr */
                 $cacheMgr = Yii::createObject('yii\caching\FileCache');
                 $cacheMgr->init();
-                $cacheId = 'less#' . $dst;
+                $cacheId = 'less#' . md5(file_get_contents($src));
                 $cache = $cacheMgr->get($cacheId);
-                if ($cache === false || (@filemtime($dst) < @filemtime($src))) {
+                if ($cache === false /*|| (@filemtime($dst) < @filemtime($src))*/) {
                     $cache = $src;
                 }
                 $less = new \lessc();
