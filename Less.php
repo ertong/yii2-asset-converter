@@ -22,7 +22,7 @@ class Less extends Parser
                 $cacheMgr->init();
                 $cacheId = 'less#' . md5(file_get_contents($src));
                 $cache = $cacheMgr->get($cacheId);
-                if ($cache === false /*|| (@filemtime($dst) < @filemtime($src))*/) {
+                if ($cache === false || $cache["root"]!=$src/*|| (@filemtime($dst) < @filemtime($src))*/) {
                     $cache = $src;
                 }
                 $less = new \lessc();
