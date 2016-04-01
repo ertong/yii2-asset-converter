@@ -111,7 +111,7 @@ class Converter extends \yii\web\AssetConverter
 
     public function needRecompile($from, $to)
     {
-        return $this->force || (@filemtime($to) < filemtime($from));
+        return $this->force || !file_exists($to) || (@filemtime($to) < filemtime($from));
     }
 
     public function checkDestinationDir($basePath, $file)
